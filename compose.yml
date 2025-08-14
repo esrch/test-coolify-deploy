@@ -9,20 +9,21 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         volumes:
             - app-data:/var/lib/postgresql/data
-        # networks:
-        #     - app-network
+        networks:
+            - app-network
 
     app:
         build: .
         environment:
             - PORT=3000
             - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-        ports:
-            - 3000:3000
-        # networks:
-        #     - app-network
+        # ports:
+        #     - 3000:3000
+        networks:
+            - app-network
 
 volumes:
     app-data:
-# networks:
-#     app-network:
+
+networks:
+    app-network:
